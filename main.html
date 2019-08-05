@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html onkeypress="sendSomething(event)"  >
+    <head>
+        <title> Text </title>
+        <link rel="stylesheet" href="main.css" />
+        <script src="main.js"> </script> 
+    </head>
+    <body onload="init();">
+        <h1> CHAT ROOM </h1>
+        <div id="roomInfo">
+            <div class = "column">
+                You are in room number <span id="currentRNs"> 0 </span>
+            </div>
+            <div class = "column">
+                <input type="text" id="roomChange" class="tfield" /> <span class="button" id="confirmChange"> Change Rooms </div>
+            </div>
+        </div>
+        <div id="logWrap">
+            <div id="chatLog">
+                
+
+            </div>
+        
+        </div>
+        <div id="messenger" >
+            <input type="text" id="textbar" class="tfield" /> <span class="button" id="confirmSend" onclick="pushMessage();"> Send </div>
+        </div>
+    </body>
+</html>

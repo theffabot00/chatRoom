@@ -1,0 +1,77 @@
+
+
+#chatLog {
+    max-width:100%;
+    height:100%;
+    padding:4px;
+    word-wrap:break-word;
+    
+}
+
+#logWrap {
+    height: calc(96vh - 128px);
+    border-style:solid;
+    border-color:white;
+    border-radius:8px;
+    margin:8px 2px;
+    overflow-y:auto;
+
+}
+
+
+#textbar {
+    width:calc(96vw - 50px);
+}
+
+#roomInfo {
+    max-height:18px;
+}
+#roomChange {
+    width: 25%;
+}
+
+.namePlate {
+    font-weight:bolder;
+}
+
+.button {
+    display:inline-block;
+    padding: 0px 4px;
+    color:black;
+    background-color:white;
+    border-color:white;
+    border-style:none;
+    border-radius:8px;
+}
+
+.column {
+    display:inline-block;
+    width:49%;
+}
+
+.column:nth-child(2) {
+    text-align:right;
+}
+
+input.tfield {
+    background-color:black;
+    color:white;
+    font-family:'Courier New', Courier, monospace;
+
+    border-style:solid;
+    border-radius:4px;
+}
+
+input.tfield:focus {
+    outline-color:white;
+}
+
+br {
+    line-height:150%;
+}
+
+body {
+    background-color:black;
+    font-family: 'Courier New', Courier, monospace;
+    color:white;
+}
