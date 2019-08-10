@@ -20,6 +20,10 @@ exports.manage = function(name, dat) {
     var nDir = new Dir(room);
     nDir.focusLatest();
 
+
+    //oh god i dont know please help async stuff scary
+
+
     var nText = nDir.getText().split("Ξर्ച്ചക്ക്I").slice(0,-1);
 
     if (nText.length == 256) {
@@ -28,6 +32,8 @@ exports.manage = function(name, dat) {
     }
 
     var latest = nDir.focus * 256 + nText.length;
+
+
 
     if (name == "newMessage") {
         var msg = dat.msg;
@@ -61,7 +67,7 @@ exports.manage = function(name, dat) {
     if (name == "getMessage") {
 
         var oDir = 9;
-        if (nDir.focus) {
+        if (nDir.focus > 0) {
             var oDir = new Dir(room);
             oDir.focusLatest();
             oDir.focus--;
@@ -80,6 +86,7 @@ exports.manage = function(name, dat) {
 
             var fileNumS = Math.floor(dat.last / 256 );
             var fileLineS = Math.floor(dat.last % 256);
+
 
             var beginFrag = fs.readFileSync("rooms/" + room + "/" + fileNumS).toString().split("Ξर्ച്ചക്ക്I").slice(fileLineS,-1);
             for (var n = fileNumS + 1; n <= nDir.focus; n++) {
@@ -107,12 +114,32 @@ class Dir {
         this.room = roomNum;
         this.path = "rooms/" + this.room;
 
-        this.files = fs.readdirSync(this.path);
+
+        if (fs.existsSync(this.path)) {
+            this.files = fs.readdir(this.path, function(err) {
+                if (err) throw err;
+            });
+        } else {
+            //im going to make this all synchronous because i dont know how to fix everything that follows to also be async
+            //i really done fucked up this time :((
+            fs.mkdirSync(this.path);
+
+            fs.openSync(this.path + "/0","w")
+
+            this.files = fs.readdirSync(this.path)
+
+            this.focus = this.files[0];
+
+
+
+        }
 
         //just for this
-        this.files = Number.parseInt.apply(Math, this.files);
+        // this.files = Number.parseInt.apply(Math, this.files);
 
-        this.focus = this.files[0];
+
+        
+        
 
         
     }
@@ -129,6 +156,7 @@ class Dir {
     }
 
     getText() {
+
         return(fs.readFileSync(this.path + "/" + this.focus).toString());
     }
 

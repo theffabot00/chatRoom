@@ -12,6 +12,10 @@ const types = [
     {
         "ext":"js",
         "typ":"text"
+    },
+    {
+        "ext":"ico",
+        "typ":"image"
     }
 
 ];
